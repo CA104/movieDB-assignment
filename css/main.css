@@ -23,3 +23,15 @@ body {
 .menu-bar a:hover {
 	border-bottom: 2px solid green;
 }
+
+.menu-bar input {
+	border: none;
+	border-bottom: 1px solid green;
+	font-family: 'Orbitron', sans-serif;
+}
+
+.gallery {
+	display: grid;
+	grid-template-columns: 1 fr 1fr;
+	grid-gap: 1px;
+}
