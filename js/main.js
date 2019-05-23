@@ -6,7 +6,7 @@ let xhr = new XMLHttpRequest();
 xhr.addEventListener("readystatechange", function () {
   if (xhr.readyState == 4) {
 	  const jsonData = JSON.parse(xhr.responseText);
-    listOfMovies.innerHTML = (`${jsonData.results.overview}`)
+    listOfMovies.innerHTML = (`${jsonData.results[0].overview}`)
   }
 });
 
