@@ -9,12 +9,12 @@ window.addEventListener(`load`, function(){
     console.log(`${endPoint}`)
     
     xhr.open("GET", endPoint);
-    xhr.send(listOfMovies);
+    xhr.send();
     xhr.addEventListener('readystatechange', playingNow);
 })
 
 function playingNow() { // verifies if the request was approved and displays the content fed by the API
 if (xhr.readyState == 4) {
     const jsonData = JSON.parse(xhr.responseText);
-    console.log(`${jsonData.results.overview}`)
+    console.log(`${jsonData.results[0].overview}`)
 }};
