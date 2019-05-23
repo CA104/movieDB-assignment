@@ -17,7 +17,7 @@ body {
 	color: black;
 	display: inline;
 	padding: 2em 2em 1em 2em;
-	display: inline-block;
+	display: block;
 }
 
 .menu-bar a:hover {
@@ -40,6 +40,10 @@ body {
 
 @media only screen and (min-width: 730px) {
 	.menu-bar input {
+		display: inline;
+	}
+
+	.menu-bar a {
 		display: inline;
 	}
 }
