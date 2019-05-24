@@ -2,22 +2,27 @@ body {
 	font-family: 'Orbitron', sans-serif;
 }
 
+h2 {
+	margin: 1em;
+	font-size: 1.25em;
+}
+
 .menu-bar {
 	background-color: white;
-	position: relative;
+	position: fixed;
 	z-index: 2;
 	width: 100%;
 	left: 0%;
 	top: 0%;
 	text-align: right;
+	padding: 1em;
 }
 
 .menu-bar a {
 	text-decoration: none;
 	color: black;
-	display: inline;
+	display: inline-block;
 	padding: 2em 2em 1em 2em;
-	display: inline;
 }
 
 .menu-bar a:hover {
@@ -34,8 +39,9 @@ body {
 
 .gallery {
 	padding: 2em;
+	margin-top: 5em;
 	display: grid;
-	grid-template-columns: 1fr 1fr;
+	grid-template-columns: 1fr;
 	grid-gap: 2px;
 }
 
@@ -47,4 +53,11 @@ body {
 	.menu-bar a {
 		display: inline;
 	}
+
+	.gallery {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		grid-gap: 2px;
+	}
+	
 }
