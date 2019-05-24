@@ -4,7 +4,7 @@ body {
 
 .menu-bar {
 	background-color: white;
-	position: fixed;
+	position: relative;
 	z-index: 2;
 	width: 100%;
 	left: 0%;
@@ -17,7 +17,7 @@ body {
 	color: black;
 	display: inline;
 	padding: 2em 2em 1em 2em;
-	display: block;
+	display: inline;
 }
 
 .menu-bar a:hover {
@@ -33,9 +33,10 @@ body {
 }
 
 .gallery {
+	padding: 2em;
 	display: grid;
-	grid-template-columns: 1 fr 1fr;
-	grid-gap: 1px;
+	grid-template-columns: 1fr 1fr;
+	grid-gap: 2px;
 }
 
 @media only screen and (min-width: 730px) {
