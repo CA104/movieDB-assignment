@@ -17,7 +17,6 @@ body {
 	left: 0%;
 	top: 0%;
 	text-align: right;
-	padding: 0.25em;
 }
 
 .menu-bar a {
@@ -67,18 +66,46 @@ img.poster {
 	padding: 0.25em;
 	font-family: 'Oswald', sans-serif;
 	font-size: 1.25em;
+	border-left: 2px solid green;
 }
 
 div.movie {
 	padding: 1em 2em;
 }
 
+.pagination a {
+	text-decoration: none;
+	color: black;
+	font-size: 1.25em;
+	border-right: 1px solid green;
+	border-left: 1px solid green;
+	padding: 0.5em 1em;
+}
 
-@media only screen and (min-width: 730px) {
+.pagination a:hover {
+	background-color: green;
+	font-weight: 900;
+	transition: 1s;
+	border-radius: 1em;
+	color: gold;
+}
+
+.pagination {
+	margin: 2em auto;
+	text-align: center;
+	padding: 1em;
+}
+
+
+@media only screen and (min-width: 750px) {
 
 	.poster {
 		display: inline;
 		vertical-align: bottom;
+	}
+
+	.page-title {
+		font-size: 7em;
 	}
 
 	.video-banner video {
