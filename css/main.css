@@ -4,6 +4,11 @@ body {
 	color: black;
 }
 
+.page-title {
+	font-size: 5em;
+	padding: 1.5em 0em 1em 0.75em;
+}
+
 .menu-bar {
 	background-color: white;
 	position: fixed;
@@ -12,7 +17,7 @@ body {
 	left: 0%;
 	top: 0%;
 	text-align: right;
-	padding: 1em;
+	padding: 0.25em;
 }
 
 .menu-bar a {
@@ -38,7 +43,6 @@ body {
 .gallery {
 	display: grid;
 	grid-template-columns: 1fr ;
-	padding-top: 7em;
 	margin: 0 2em;
 }
 
@@ -75,6 +79,10 @@ div.movie {
 	.poster {
 		display: inline;
 		vertical-align: bottom;
+	}
+
+	.video-banner video {
+		width: 70%;
 	}
 
 	.menu-bar input {
