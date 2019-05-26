@@ -45,7 +45,7 @@ body {
 img.poster {
 	width: 15em;
 	margin: 2em 0;
-	vertical-align: bottom;
+	/* text-align: left; */
 }
 
 .gallery h2 {
@@ -63,6 +63,10 @@ img.poster {
 	padding: 0.25em;
 	font-family: 'Oswald', sans-serif;
 	font-size: 1.25em;
+}
+
+div.movie {
+	padding: 1em 2em;
 }
 
 
