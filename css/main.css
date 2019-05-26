@@ -1,10 +1,7 @@
 body {
 	font-family: 'Orbitron', sans-serif;
-}
-
-h2 {
-	margin: 1em;
-	font-size: 1.25em;
+	background-color: #F4F0EF;
+	color: black;
 }
 
 .menu-bar {
@@ -22,7 +19,7 @@ h2 {
 	text-decoration: none;
 	color: black;
 	display: inline-block;
-	padding: 2em 2em 1em 2em;
+	padding: 2em 1em 1em 1em;
 }
 
 .menu-bar a:hover {
@@ -33,19 +30,49 @@ h2 {
 	border: none;
 	border-bottom: 2px solid green;
 	font-family: 'Orbitron', sans-serif;
-	padding: 1.25em 2em 1em 2em;
+	padding: 1.30em 2em 1em 2em;
 	display: none;
+	width: 10em;
 }
 
 .gallery {
-	padding: 2em;
-	margin-top: 5em;
 	display: grid;
-	grid-template-columns: 1fr;
-	grid-gap: 2px;
+	grid-template-columns: 1fr ;
+	padding-top: 7em;
+	margin: 0 2em;
 }
 
+img.poster {
+	width: 15em;
+	margin: 2em 0;
+	vertical-align: bottom;
+}
+
+.gallery h2 {
+	font-size: 1.50em;
+	text-align: right;
+	margin-bottom: 1em;
+	background-color: #F4F0EF;
+	border-bottom: 2px solid green;
+	border-right: 5px solid green;
+	padding-right: 0.25em;
+	margin-right: 0.5em;
+}
+
+.gallery p {
+	padding: 0.25em;
+	font-family: 'Oswald', sans-serif;
+	font-size: 1.25em;
+}
+
+
 @media only screen and (min-width: 730px) {
+
+	.poster {
+		display: inline;
+		vertical-align: bottom;
+	}
+
 	.menu-bar input {
 		display: inline;
 	}
@@ -59,5 +86,4 @@ h2 {
 		grid-template-columns: 1fr 1fr;
 		grid-gap: 2px;
 	}
-	
 }
