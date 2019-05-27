@@ -2,15 +2,18 @@ const displayMovies = document.querySelector(`#movies`)  // calls the #movies <a
 const apiKey = `1af0c47628b411de73a1ff9f56cf0335`;
 const xhr = new XMLHttpRequest();  // creates HTTP request
 
+const createRequest = (page=1) => {
 window.addEventListener(`load`, e => {
     const endPoint =  // request to the API to get currently playing list of movies
-    `https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}&language=en-US&page=1`; 
+    `https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}&language=en-US&page=${page}`; 
     console.log(`${endPoint}`)
     
     xhr.open("GET", endPoint);
     xhr.send();
     xhr.addEventListener('readystatechange', playingNow);
 })
+}
+createRequest();
 
 function playingNow() {   // verifies if the request was approved and displays the content fed by the API
   if (xhr.readyState == 4) {
@@ -28,3 +31,12 @@ function playingNow() {   // verifies if the request was approved and displays t
   <img id="moreInfo" class= "poster" src= "http://image.tmdb.org/t/p/w200/${jsonData.results[i].poster_path}"></div>`; 
   }
 }};
+
+const changePage = document.getElementById(`pagination`);
+changePage.addEventListener(`click`, event => {
+  if( !event.target.matches(`li`) ) {
+    return;
+  }
+  createRequest( event.target.dataset.page);
+  console.log(`event.target.page`)
+})

@@ -73,7 +73,7 @@ div.movie {
 	padding: 1em 2em;
 }
 
-.pagination button {
+.pagination li {
 	border: none;
 	background-color: #F4F0EF;
 	color: black;
@@ -82,9 +82,11 @@ div.movie {
 	border-left: 1px solid green;
 	padding: 0.5em 1em;
 	font-family:  'Orbitron', sans-serif;
+	display: inline;
+	cursor: pointer;
 }
 
-.pagination button:hover {
+.pagination li:hover {
 	background-color: green;
 	font-weight: 900;
 	transition: 1s;
