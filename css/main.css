@@ -47,14 +47,13 @@ body {
 
 img.poster {
 	width: 15em;
-	margin: 2em 0;
-	/* text-align: left; */
+	margin-top: 2em;
 }
 
 .gallery h2 {
 	font-size: 1.50em;
 	text-align: right;
-	margin-bottom: 1em;
+	margin: 2em 0;
 	background-color: #F4F0EF;
 	border-bottom: 2px solid green;
 	border-right: 5px solid green;
@@ -71,6 +70,7 @@ img.poster {
 
 div.movie {
 	padding: 1em 2em;
+	border-bottom: 1px solid green;
 }
 
 .pagination li {
@@ -126,7 +126,7 @@ div.movie {
 
 	.gallery {
 		display: grid;
-		grid-template-columns: 1fr 1fr;
+		grid-template-columns: 1fr 1fr 1fr;
 		grid-gap: 2px;
 	}
 }
