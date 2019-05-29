@@ -35,7 +35,6 @@ body {
 	border-bottom: 2px solid green;
 	font-family: 'Orbitron', sans-serif;
 	padding: 1.30em 2em 1em 2em;
-	display: none;
 	width: 10em;
 }
 
@@ -59,6 +58,7 @@ img.poster {
 	border-right: 5px solid green;
 	padding-right: 0.25em;
 	margin-right: 0.5em;
+	vertical-align: bottom;
 }
 
 .gallery p {
