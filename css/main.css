@@ -68,6 +68,11 @@ img.poster {
 	border-left: 2px solid green;
 }
 
+.overview {
+	overflow: scroll;
+	height: 10em;
+}
+
 div.movie {
 	padding: 1em 2em;
 	border-bottom: 1px solid green;

@@ -27,7 +27,7 @@ function playingNow() {
   `<div class= "movie"><h2>${jsonData.results[i].original_title}</h2> 
   <p>Rating: ${jsonData.results[i].vote_average}</p> 
   <p>${jsonData.results[i].release_date}</p> 
-  <div><p>${jsonData.results[i].overview}</p></div> 
+  <p class= "overview">${jsonData.results[i].overview}</p>
   <img id="moreInfo" class= "poster" src= "http://image.tmdb.org/t/p/w200/${jsonData.results[i].poster_path}"></div>`; 
   }
 }};
