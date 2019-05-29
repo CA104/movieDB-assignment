@@ -24,11 +24,11 @@ function playingNow() {
   let i;
   for( i = 0; i < jsonData.results.length; i++) {
   displayGallery.innerHTML +=  // prints the array objects on the DOM
-  `<div class= "movie"><h2>${jsonData.results[i].original_title}</h2> 
-  <p>Rating: ${jsonData.results[i].vote_average}</p> 
-  <p>${jsonData.results[i].release_date}</p> 
-  <p class= "overview">${jsonData.results[i].overview}</p>
-  <img id="moreInfo" class= "poster" src= "http://image.tmdb.org/t/p/w200/${jsonData.results[i].poster_path}"></div>`; 
+  `<div class= "movie"><h2 class= "animated fadeIn">${jsonData.results[i].original_title}</h2> 
+  <p class= "animated fadeIn">Rating: ${jsonData.results[i].vote_average}</p> 
+  <p class= "animated fadeIn">${jsonData.results[i].release_date}</p> 
+  <p class= "overview animated fadeIn">${jsonData.results[i].overview}</p>
+  <img id="moreInfo" class= "poster animated fadeIn" src= "http://image.tmdb.org/t/p/w200/${jsonData.results[i].poster_path}"></div>`; 
   }
 }};
 

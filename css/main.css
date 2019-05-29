@@ -47,6 +47,7 @@ body {
 img.poster {
 	width: 15em;
 	margin-top: 2em;
+	cursor: pointer;
 }
 
 .gallery h2 {
