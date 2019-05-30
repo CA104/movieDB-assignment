@@ -1,7 +1,9 @@
 /***** calls the #movies <a> that will have an event listener *****/
-const displayMovies = document.querySelector(`#movies`)  
 const apiKey = `1af0c47628b411de73a1ff9f56cf0335`;
 const xhr = new XMLHttpRequest();  // creates HTTP request
+const displayGallery = document.querySelector('#galleryOfMovies');
+const singleMovieView = document.querySelector(`#single-movie`);
+const movies = document.querySelector(`#movies`);
 
 /***** sends request to the API for content *****/
 const createRequest = (page=1) => {
@@ -18,7 +20,6 @@ const createRequest = (page=1) => {
 function playingNow() {   
   if (xhr.readyState == 4) {
   const jsonData = JSON.parse(xhr.responseText);
-  const displayGallery = document.querySelector('#galleryOfMovies');
 
 /***** loops through the array and prints the movie titles, overview, rating, release date and poster  *****/
   let i;
@@ -43,4 +44,15 @@ changePage.addEventListener(`click`, event => {
   }
   createRequest( event.target.dataset.page);
   console.log(`event.target.page`)
+})
+
+displayGallery.addEventListener(`click`, event => {
+  if (event.target.matches(`img`)) {
+   const hideContent = document.querySelector(`#main-view`);
+   hideContent.style.display = `none`;
+
+   movies.addEventListener(`click`, event => {
+    hideContent.style.display = `block`;
+  })
+  }
 })
