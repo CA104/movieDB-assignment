@@ -1,11 +1,11 @@
-/***** calls the #movies <a> that will have an event listener *****/
+/*****  calls the #movies <a> that will have an event listener  *****/
 const apiKey = `1af0c47628b411de73a1ff9f56cf0335`;
 const xhr = new XMLHttpRequest();  // creates HTTP request
 const displayGallery = document.querySelector('#galleryOfMovies');
 const singleMovieView = document.querySelector(`#single-movie`);
 const movies = document.querySelector(`#movies`);
 
-/***** sends request to the API for content *****/
+/*****  sends request to the API for content  *****/
 const createRequest = (page=1) => {
     const endPoint = 
     `https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}&language=en-US&page=${page}`; 
@@ -16,12 +16,12 @@ const createRequest = (page=1) => {
     xhr.addEventListener('readystatechange', playingNow);
 }
 
-/***** verifies if the request was approved and displays the content fed by the API *****/
+/*****  verifies if the request was approved and displays the content fed by the API  *****/
 function playingNow() {   
   if (xhr.readyState == 4) {
   const jsonData = JSON.parse(xhr.responseText);
 
-/***** loops through the array and prints the movie titles, overview, rating, release date and poster  *****/
+/*****  loops through the array and prints the movie titles, overview, rating, release date and poster   *****/
   let i;
   for( i = 0; i < jsonData.results.length; i++) {
   displayGallery.innerHTML +=  // prints the array objects on the DOM
@@ -33,10 +33,10 @@ function playingNow() {
   }
 }};
 
-/***** prints the list of now playing movies *****/
+/*****  prints the list of now playing movies  *****/
 createRequest();
 
-/***** resend the reuest to the API for the page number for the event fired *****/
+/*****  resend the reuest to the API for the page number for the event fired  *****/
 const changePage = document.getElementById(`pagination`);
 changePage.addEventListener(`click`, event => {
   if( !event.target.matches(`li`) ) {
@@ -46,6 +46,7 @@ changePage.addEventListener(`click`, event => {
   console.log(`event.target.page`)
 })
 
+/*****  event to hide list of now playing movies and adds event to the movies link to display content  *****/
 displayGallery.addEventListener(`click`, event => {
   if (event.target.matches(`img`)) {
    const hideContent = document.querySelector(`#main-view`);
@@ -56,3 +57,5 @@ displayGallery.addEventListener(`click`, event => {
   })
   }
 })
+
+/*****  function to display single movie content  *****/
