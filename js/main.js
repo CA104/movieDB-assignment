@@ -25,7 +25,7 @@ function playingNow() {
   let i;
   for( i = 0; i < jsonData.results.length; i++) {
   displayGallery.innerHTML +=  // prints the array objects on the DOM
-  `<div class= "movie"><h2 class= "animated fadeIn">${jsonData.results[i].original_title}</h2> 
+  `<div class= "movie"><h2 class= "animated fadeIn" data-movie>${jsonData.results[i].original_title}</h2> 
   <p class= "animated fadeIn">Rating: ${jsonData.results[i].vote_average}</p> 
   <p class= "animated fadeIn">${jsonData.results[i].release_date}</p> 
   <p class= "overview animated fadeIn">${jsonData.results[i].overview}</p>
@@ -47,9 +47,9 @@ changePage.addEventListener(`click`, event => {
 })
 
 /*****  event to hide list of now playing movies and adds event to the movies link to display content  *****/
+const hideContent = document.querySelector(`#main-view`);
 displayGallery.addEventListener(`click`, event => {
   if (event.target.matches(`img`)) {
-   const hideContent = document.querySelector(`#main-view`);
    hideContent.style.display = `none`;
 
    movies.addEventListener(`click`, event => {
