@@ -23,8 +23,7 @@ function playingNow() {
   displayGallery.innerHTML = ``;
 
 /*****  loops through the array and prints the movie titles, overview, rating, release date and poster   *****/
-  let i;
-  for( i = 0; i < jsonData.results.length; i++) {
+  for( let i = 0; i < jsonData.results.length; i++) {
   displayGallery.innerHTML +=  // prints the array objects on the DOM
   `<div class= "movie"><h2 class= "animated fadeIn" data-movie>${jsonData.results[i].original_title}</h2> 
   <p class= "animated fadeIn">Rating: ${jsonData.results[i].vote_average}</p> 
