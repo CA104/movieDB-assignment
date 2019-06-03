@@ -42,7 +42,7 @@ changePage.addEventListener(`click`, event => {
   if( !event.target.matches(`li`) ) {
     return;
   }
-  createRequest( event.target.dataset.page);
+  displayGallery.innerHTML = createRequest( event.target.dataset.page);
   console.log(`event.target.page`)
 })
 
