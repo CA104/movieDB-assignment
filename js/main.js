@@ -20,6 +20,7 @@ const createRequest = (page=1) => {
 function playingNow() {   
   if (xhr.readyState == 4) {
   const jsonData = JSON.parse(xhr.responseText);
+  displayGallery.innerHTML = ``;
 
 /*****  loops through the array and prints the movie titles, overview, rating, release date and poster   *****/
   let i;
@@ -42,7 +43,7 @@ changePage.addEventListener(`click`, event => {
   if( !event.target.matches(`li`) ) {
     return;
   }
-  displayGallery.innerHTML = createRequest( event.target.dataset.page);
+  createRequest( event.target.dataset.page);
   console.log(`event.target.page`)
 })
 
