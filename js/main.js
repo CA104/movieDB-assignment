@@ -46,16 +46,3 @@ changePage.addEventListener(`click`, event => {
   console.log(`event.target.page`)
 })
 
-/*****  event to hide list of now playing movies and adds event to the movies link to display content  *****/
-const hideContent = document.querySelector(`#main-view`);
-displayGallery.addEventListener(`click`, event => {
-  if (event.target.matches(`img`)) {
-   hideContent.style.display = `none`;
-
-   movies.addEventListener(`click`, event => {
-    hideContent.style.display = `block`;
-  })
-  }
-})
-
-/*****  function to display single movie content  *****/
