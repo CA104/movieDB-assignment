@@ -25,7 +25,7 @@ const playingNow = () => {
 /*****  loops through the array and prints the movie titles, overview, rating, release date and poster   *****/
   for( let i = 0; i < jsonData.results.length; i++) {
   displayGallery.innerHTML +=  // prints the array objects on the DOM
-  `<div class= "movie"><h2 class= "animated fadeIn" data-movie>${jsonData.results[i].original_title}</h2> 
+  `<div class= "movie"><h2 class= "animated fadeIn" data-${jsonData.results[i].id}>${jsonData.results[i].original_title}</h2> 
   <p class= "animated fadeIn">Rating: ${jsonData.results[i].vote_average}</p> 
   <p class= "animated fadeIn">${jsonData.results[i].release_date}</p> 
   <p class= "overview animated fadeIn">${jsonData.results[i].overview}</p>
@@ -54,4 +54,6 @@ const requestForSingleMovie = (id) => {
   xhr.send();
   xhr.addEventListener(`readystatechange`, singleMovie);
 }
+
+/*****  single view mode *****/
 
