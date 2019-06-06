@@ -17,7 +17,7 @@ const createRequest = (page=1) => {
 }
 
 /*****  verifies if the request was approved and displays the content fed by the API  *****/
-function playingNow() {   
+const playingNow = () => {   
   if (xhr.readyState == 4) {
   const jsonData = JSON.parse(xhr.responseText);
   displayGallery.innerHTML = ``;
@@ -29,7 +29,7 @@ function playingNow() {
   <p class= "animated fadeIn">Rating: ${jsonData.results[i].vote_average}</p> 
   <p class= "animated fadeIn">${jsonData.results[i].release_date}</p> 
   <p class= "overview animated fadeIn">${jsonData.results[i].overview}</p>
-  <img id="moreInfo" class= "poster animated fadeIn" src= "http://image.tmdb.org/t/p/w200/${jsonData.results[i].poster_path}"></div>`; 
+  <img id="movieInfo" class= "poster animated fadeIn" src= "http://image.tmdb.org/t/p/w200/${jsonData.results[i].poster_path}"></div>`; 
   }
 }};
 
@@ -45,4 +45,13 @@ changePage.addEventListener(`click`, event => {
   createRequest( event.target.dataset.page);
   console.log(`event.target.page`)
 })
+
+const requestForSingleMovie = (id) => {
+  const singleMovieEndPoint = `https://api.themoviedb.org/3/movie/${movieId}?api_key=1af0c47628b411de73a1ff9f56cf0335&language=en-US`;
+  console.log(`${singleMovieEndPoint}`);
+
+  xhr.open(GET, singleMovieEndPoint);
+  xhr.send();
+  xhr.addEventListener(`readystatechange`, singleMovie);
+}
 
