@@ -1,12 +1,11 @@
 /*****  calls the #movies <a> that will have an event listener  *****/
 const apiKey = `1af0c47628b411de73a1ff9f56cf0335`;
 const xhr = new XMLHttpRequest();  // creates HTTP request
-const displayGallery = document.querySelector('#galleryOfMovies');
-const singleMovieView = document.querySelector(`#single-movie`);
+const displayGalleryAsHTML = document.querySelector('#galleryOfMovies');
 const movies = document.querySelector(`#movies`);
 
 /*****  sends request to the API for content  *****/
-const createRequest = (page=1) => {
+const createRequestForMovies = (page=1) => {
     const endPoint = 
     `https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}&language=en-US&page=${page}`; 
     console.log(`${endPoint}`)
@@ -20,21 +19,20 @@ const createRequest = (page=1) => {
 const playingNow = () => {   
   if (xhr.readyState == 4) {
   const jsonData = JSON.parse(xhr.responseText);
-  displayGallery.innerHTML = ``;
+  displayGalleryAsHTML.innerHTML = ``;
 
 /*****  loops through the array and prints the movie titles, overview, rating, release date and poster   *****/
   for( let i = 0; i < jsonData.results.length; i++) {
-  displayGallery.innerHTML +=  // prints the array objects on the DOM
-  `<div class= "movie"><h2 class= "animated fadeIn" data-move=${jsonData.results[i].id}>${jsonData.results[i].original_title}</h2> 
+    displayGalleryAsHTML.innerHTML +=  // prints the array objects on the DOM
+  `<div class= "movie"><h2 class= "animated fadeIn" data-movie=${jsonData.results[i].id}>${jsonData.results[i].original_title}</h2> 
   <p class= "animated fadeIn">Rating: ${jsonData.results[i].vote_average}</p> 
   <p class= "animated fadeIn">${jsonData.results[i].release_date}</p> 
   <p class= "overview animated fadeIn">${jsonData.results[i].overview}</p>
-  <img id="movieInfo" class= "poster animated fadeIn" src= "http://image.tmdb.org/t/p/w200/${jsonData.results[i].poster_path}"></div>`; 
+  <img class= "poster animated fadeIn" src= "http://image.tmdb.org/t/p/w200/${jsonData.results[i].poster_path}"></div>`; 
   }
 }};
 
-/*****  prints the list of now playing movies  *****/
-createRequest();
+createRequestForMovies();
 
 /*****  resend the reuest to the API for the page number for the event fired  *****/
 const changePage = document.getElementById(`pagination`);
@@ -42,18 +40,24 @@ changePage.addEventListener(`click`, event => {
   if( !event.target.matches(`li`) ) {
     return;
   }
-  createRequest( event.target.dataset.page);
+  createRequestForMovies( event.target.dataset.page);
   console.log(`event.target.page`)
 })
 
-const requestForSingleMovie = (id) => {
-  const singleMovieEndPoint = `https://api.themoviedb.org/3/movie/${movieId}?api_key=1af0c47628b411de73a1ff9f56cf0335&language=en-US`;
+/*****  gets the ele ID when poster is clicked  *****/
+displayGalleryAsHTML.addEventListener(`click`, event => {
+  if (event.target.matches(`img`)) {
+    console.log(playingNow(event.target.dataset.movie))
+  }
+})
+
+
+const requestForSingleMovie = id => {
+  const singleMovieEndPoint = `https://api.themoviedb.org/3/movie/${id}?api_key=1af0c47628b411de73a1ff9f56cf0335&language=en-US`;
   console.log(`${singleMovieEndPoint}`);
 
   xhr.open(GET, singleMovieEndPoint);
   xhr.send();
   xhr.addEventListener(`readystatechange`, singleMovie);
 }
-
-/*****  single view mode *****/
 
