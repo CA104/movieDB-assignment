@@ -51,6 +51,7 @@ img.poster {
 	width: 15em;
 	margin-top: 2em;
 	cursor: pointer;
+	box-shadow: 1px 1px 10px white;
 }
 
 .gallery h2 {
