@@ -1,7 +1,9 @@
 body {
 	font-family: 'Orbitron', sans-serif;
 	background-color: #F4F0EF;
-	color: black;
+	color: white;
+	background-image: url("/img/projector.jpeg");
+	background-attachment: fixed;
 }
 
 .page-title {
@@ -10,18 +12,18 @@ body {
 }
 
 .menu-bar {
-	background-color: white;
 	position: fixed;
 	z-index: 2;
 	width: 100%;
 	left: 0%;
 	top: 0%;
 	text-align: right;
+	background-color: black;
 }
 
 .menu-bar a {
 	text-decoration: none;
-	color: black;
+	color: white;
 	display: inline-block;
 	padding: 2em 1em 1em 1em;
 }
@@ -36,6 +38,7 @@ body {
 	font-family: 'Orbitron', sans-serif;
 	padding: 1.30em 2em 1em 2em;
 	width: 10em;
+	background-color: black;
 }
 
 .gallery {
@@ -54,12 +57,12 @@ img.poster {
 	font-size: 1.50em;
 	text-align: right;
 	margin: 2em 0;
-	background-color: #F4F0EF;
 	border-bottom: 2px solid green;
 	border-right: 5px solid green;
 	padding-right: 0.25em;
 	margin-right: 0.5em;
 	height: 3em;
+	color: white;
 }
 
 .gallery p {
@@ -81,8 +84,7 @@ div.movie {
 
 .pagination li {
 	border: none;
-	background-color: #F4F0EF;
-	color: black;
+	color: gold;
 	font-size: 1.25em;
 	border-right: 1px solid green;
 	border-left: 1px solid green;
