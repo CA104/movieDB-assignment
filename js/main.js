@@ -30,7 +30,7 @@ const playingNow = () => {
   <p class= "animated fadeIn">Rating: ${jsonData.results[i].vote_average}</p> 
   <p class= "animated fadeIn">${jsonData.results[i].release_date}</p> 
   <p class= "overview animated fadeIn">${jsonData.results[i].overview}</p>
-  <img data-movie=${jsonData.results[i].id} id="${jsonData.results[i].id}" class= "poster animated fadeIn" src= "http://image.tmdb.org/t/p/w200/${jsonData.results[i].poster_path}">
+  <img data-movie=${jsonData.results[i].id} id="${jsonData.results[i].id}" class= "poster animated fadeIn" src= "http://image.tmdb.org/t/p/w500/${jsonData.results[i].poster_path}">
   </div>
   `; 
   }
