@@ -51,6 +51,7 @@ changePage.addEventListener(`click`, event => {
 
 /*****  gets the ele ID when poster is clicked  *****/
 displayGalleryAsHTML.addEventListener(`click`, event => {
+  if(event.target.matches(`img`)) {
   let getMovieId = event.target.closest(`.movie`);
   const xhrForSingleMovie = new XMLHttpRequest();
   
@@ -60,6 +61,7 @@ displayGalleryAsHTML.addEventListener(`click`, event => {
   xhrForSingleMovie.open(`GET`, singleMovieEndPoint);
   xhrForSingleMovie.send();
   xhrForSingleMovie.addEventListener(`readystatechange`, singleMovie);
+  }
 });
 
 const singleMovie = () => {
