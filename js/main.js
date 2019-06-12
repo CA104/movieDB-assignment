@@ -49,33 +49,31 @@ changePage.addEventListener(`click`, event => {
   window.scrollTo(0, 0);
 })
 
-/*****  gets the ele ID when poster is clicked  *****/
+/*****  gets the ele ID when poster is clicked and hides the list of movies from the DOM *****/
 displayGalleryAsHTML.addEventListener(`click`, event => {
   if(event.target.matches(`img`)) {
+
   let getMovieId = event.target.closest(`.movie`);
   const xhrForSingleMovie = new XMLHttpRequest();
   
   const singleMovieEndPoint = `https://api.themoviedb.org/3/movie/${getMovieId.dataset.id}?api_key=${apiKey}&language=en-US`;
-  console.log(`${singleMovieEndPoint}`);
+  console.log(singleMovieEndPoint);
+  displayGalleryAsHTML.innerHTML = ``;
 
   xhrForSingleMovie.open(`GET`, singleMovieEndPoint);
   xhrForSingleMovie.send();
-  xhrForSingleMovie.addEventListener(`readystatechange`, singleMovie);
-  }
-});
+  xhrForSingleMovie.onreadystatechange = function() {
+    if (this.readyState == 4) {
+      const jsonDataForMovie = JSON.parse(this.responseText);
 
-const singleMovie = () => {
-  if (this.readyState == 4) {
-    const jsonDataForMovie = JSON.parse(xhrForSingleMovie.responseText);
-    displayGalleryAsHTML.innerHTML = ``;
-
-    for( let i = 0; i < jsonData.results.length; i++) {
-      singleMovieView.innerHTML = `
-      <div class= "movie"><h2 class= "animated fadeIn" data-movie=${jsonDataForMovie.results[i].id}>${jsonDataForMovie.results[i].original_title}</h2> 
-      <p class= "animated fadeIn">${jsonDataForMovie.results[i].release_date}</p> 
-      <p class= "overview animated fadeIn">${jsonDataForMovie.results[i].overview}</p>
-      <img class= "poster animated fadeIn" src= "http://image.tmdb.org/t/p/w200/${jsonDataForMovie.results[i].poster_path}"></div>
+      singleMovieView.innerHTML = 
+      `<div class= "single-movie">
+      <h2 data-movie=${jsonDataForMovie.id}>${jsonDataForMovie.original_title}</h2> 
+      <p>${jsonDataForMovie.release_date}</p> 
+      <p>${jsonDataForMovie.overview}</p>
+      <img src= "http://image.tmdb.org/t/p/w500/${jsonDataForMovie.poster_path}"></div>
       `
     }
-}};
-
+  }
+  }
+});
