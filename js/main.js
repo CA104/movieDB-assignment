@@ -73,7 +73,10 @@ displayGalleryAsHTML.addEventListener(`click`, event => {
       <p>${jsonDataForMovie.overview}</p>
       <img src= "http://image.tmdb.org/t/p/w500/${jsonDataForMovie.poster_path}"></div>
       `
-    }
-  }
-  }
+    }}}
 });
+
+movies.addEventListener(`click`, event => {
+  createRequestForMovies();
+  window.location.reload();
+})
