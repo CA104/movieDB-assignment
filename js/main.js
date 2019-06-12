@@ -76,6 +76,7 @@ displayGalleryAsHTML.addEventListener(`click`, event => {
     }}}
 });
 
+/*****  listens to the movie link to display the full list of movies and reloads page *****/
 movies.addEventListener(`click`, event => {
   createRequestForMovies();
   window.location.reload();
