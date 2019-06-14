@@ -130,6 +130,24 @@ div.movie {
 	justify-self: center;
 }
 
+.single-movie button {
+	background-color: green;
+	color: gold;
+	font-family: 'Orbitron', sans-serif;
+	border: none;
+	width: 10em;
+	padding: 1em;
+	opacity: 0.75;
+	font-size: 0.75em;
+	margin: 1em;
+}
+
+.single-movie button:hover {
+	opacity: 10;
+	transition: 1s;
+	box-shadow: 1px 1px 10px gold;
+}
+
 
 @media only screen and (min-width: 750px) {
 

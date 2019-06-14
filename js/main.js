@@ -4,7 +4,7 @@ const xhr = new XMLHttpRequest();  // creates HTTP request
 const displayGalleryAsHTML = document.querySelector('#galleryOfMovies');
 const movies = document.querySelector(`#movies`);
 const singleMovieView = document.querySelector(`#singleMovie`);
-const movieTrailer = document.querySelector(`#movieTrailer`);
+const movieTrailer = document.querySelector(`#watch-trailer`);
 
 /*****  sends request to the API for content  *****/
 const createRequestForMovies = (page=1) => {
@@ -71,9 +71,10 @@ displayGalleryAsHTML.addEventListener(`click`, event => {
       `<div class= "single-movie animated fadeIn">
       <h2 data-movie=${jsonDataForMovie.id}>${jsonDataForMovie.original_title}</h2> 
       <p>${jsonDataForMovie.release_date}</p> 
-      <p>${jsonDataForMovie.overview}</p>
-      <img src= "http://image.tmdb.org/t/p/w500/${jsonDataForMovie.poster_path}"></div>
-      `
+      <p>${jsonDataForMovie.overview} <br> 
+      <button>Watch Trailer</button></p>
+      <img src= "http://image.tmdb.org/t/p/w500/${jsonDataForMovie.poster_path}">
+      </div>`
       changePage.innerHTML = ``;
       window.scrollTo(0,260);
     }}}
@@ -91,19 +92,16 @@ displayGalleryAsHTML.addEventListener(`click`, event => {
 
     let getTrailer = event.target.closest(`.movie`);
     const xhrForTrailer = new XMLHttpRequest();
-    
+
     const trailerEndPoint = `https://api.themoviedb.org/3/movie/${getTrailer.dataset.id}/videos?api_key=${apiKey}&language=en-US`;
     console.log(trailerEndPoint);
     displayGalleryAsHTML.innerHTML = ``;
-  
+
     xhrForTrailer.open(`GET`, trailerEndPoint);
     xhrForTrailer.send();
     xhrForTrailer.onreadystatechange = function() {
       if (this.readyState == 4) {
         const jsonDataTrailer = JSON.parse(this.responseText);
 
-        movieTrailer.innerHTML = `
-        <a href="https://www.youtube.com/watch?v=${jsonDataTrailer[0].key}"></a>
-        `
       }}}
-});
+}); 
