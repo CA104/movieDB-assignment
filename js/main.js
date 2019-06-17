@@ -53,33 +53,59 @@ changePage.addEventListener(`click`, event => {
 displayGalleryAsHTML.addEventListener(`click`, event => {
   if(event.target.matches(`img`)) {
 
-  let getMovieId = event.target.closest(`.movie`);
-  const xhrForSingleMovie = new XMLHttpRequest();
-  
-  const singleMovieEndPoint = `https://api.themoviedb.org/3/movie/${getMovieId.dataset.id}?api_key=${apiKey}&language=en-US`;
-  console.log(singleMovieEndPoint);
-  displayGalleryAsHTML.innerHTML = ``;
 
-  xhrForSingleMovie.open(`GET`, singleMovieEndPoint);
-  xhrForSingleMovie.send();
-  xhrForSingleMovie.onreadystatechange = function() {
-    if (this.readyState == 4) {
-      const jsonDataForMovie = JSON.parse(this.responseText);
+    // GET ALL INFO ABOUT THE MOVIE
+    let getMovieId = event.target.closest(`.movie`);
+    const xhrForSingleMovie = new XMLHttpRequest();
+    
+    const singleMovieEndPoint = `https://api.themoviedb.org/3/movie/${getMovieId.dataset.id}?api_key=${apiKey}&language=en-US`;
+    console.log(singleMovieEndPoint);
+    displayGalleryAsHTML.innerHTML = ``;
 
-      singleMovieView.innerHTML = 
-      `<div class= "single-movie animated fadeIn">
-      <h2 data-movie=${jsonDataForMovie.id}>${jsonDataForMovie.original_title}</h2> 
-      <p>${jsonDataForMovie.release_date}</p> 
-      <p>${jsonDataForMovie.overview} <br> 
-      <button id="watch-trailer">Watch Trailer</button></p>
-      <img src= "http://image.tmdb.org/t/p/w500/${jsonDataForMovie.poster_path}">
-      </div>`
-      changePage.innerHTML = ``;
-      window.scrollTo(0,260);
+    xhrForSingleMovie.open(`GET`, singleMovieEndPoint);
+    xhrForSingleMovie.send();
+    xhrForSingleMovie.onreadystatechange = function() {
+      if (this.readyState == 4) {
+        const jsonDataForMovie = JSON.parse(this.responseText);
+
+        singleMovieView.innerHTML = 
+        `<div class= "single-movie animated fadeIn">
+        <h2 data-movie=${jsonDataForMovie.id}>${jsonDataForMovie.original_title}</h2> 
+        <p>${jsonDataForMovie.release_date}</p> 
+        <p>${jsonDataForMovie.overview} <br> 
+        <button id="watch-trailer" disabled>Watch Trailer</button></p>
+        <img src= "http://image.tmdb.org/t/p/w500/${jsonDataForMovie.poster_path}">
+        </div>`
+        changePage.innerHTML = ``;
+        window.scrollTo(0,260);
+
+        // NOW THAT WE HAVE THE INFORMATION WE NEED...
+        // GET INFORMATION ABOUT THE VIDEO
+        let getTrailer = event.target.closest(`.movie`);
+        const xhrForTrailer = new XMLHttpRequest();
+
+        const trailerEndPoint = `https://api.themoviedb.org/3/movie/${getTrailer.dataset.id}/videos?api_key=${apiKey}&language=en-US`;
+        console.log(trailerEndPoint);
+        displayGalleryAsHTML.innerHTML = ``;
+
+        xhrForTrailer.open(`GET`, trailerEndPoint);
+        xhrForTrailer.send();
+        xhrForTrailer.onreadystatechange = function() {
+          if (this.readyState == 4) {
+            const jsonDataTrailer = JSON.parse(this.responseText);
+
+            const movieTrailer = document.querySelector(`#watch-trailer`);
+            
+            if (jsonDataTrailer.results.length > 0) {
+              movieTrailer.removeAttribute('disabled'); // re-enable when a trailer  is available
+              movieTrailer.addEventListener(`click`, event => {
+                const movieTrailer = document.querySelector('.modal iframe');
+                movieTrailer.setAttribute(`src`, `https://www.youtube.com/embed/${jsonDataTrailer.results[0].key}`);
+                document.querySelector('.modal').classList.add('show');
+              }) 
+            }}}
     }}}
 });
-
-const movieTrailer = document.querySelector(`#watch-trailer`);
 
 /*****  listens to the movie link to display the full list of movies and reloads page *****/
 movies.addEventListener(`click`, event => {
@@ -87,25 +113,5 @@ movies.addEventListener(`click`, event => {
   window.location.reload();
 })
 
-/*****  listener to request API videos request *****/
-displayGalleryAsHTML.addEventListener(`click`, event => {
 
-    let getMovie = event.target.closest(`.movie`);
-    let getTrailerKey = event.target.closest(`#watch-trailer`);
-    const xhrForTrailer = new XMLHttpRequest();
 
-    const trailerEndPoint = `https://api.themoviedb.org/3/movie/${getMovie.dataset.id}/videos?api_key=${apiKey}&language=en-US`;
-    console.log(trailerEndPoint);
-    displayGalleryAsHTML.innerHTML = ``;
-
-    xhrForTrailer.open(`GET`, trailerEndPoint);
-    xhrForTrailer.send();
-    xhrForTrailer.onreadystatechange = function() {
-      if (this.readyState == 4) {
-        const jsonDataTrailer = JSON.parse(this.responseText);
-
-        movieTrailer.addEventListener(`click`, event => {
-          
-        })
-      }}
-}); 
