@@ -4,7 +4,6 @@ const xhr = new XMLHttpRequest();  // creates HTTP request
 const displayGalleryAsHTML = document.querySelector('#galleryOfMovies');
 const movies = document.querySelector(`#movies`);
 const singleMovieView = document.querySelector(`#singleMovie`);
-const movieTrailer = document.querySelector(`#watch-trailer`);
 
 /*****  sends request to the API for content  *****/
 const createRequestForMovies = (page=1) => {
@@ -72,13 +71,15 @@ displayGalleryAsHTML.addEventListener(`click`, event => {
       <h2 data-movie=${jsonDataForMovie.id}>${jsonDataForMovie.original_title}</h2> 
       <p>${jsonDataForMovie.release_date}</p> 
       <p>${jsonDataForMovie.overview} <br> 
-      <button>Watch Trailer</button></p>
+      <button id="watch-trailer">Watch Trailer</button></p>
       <img src= "http://image.tmdb.org/t/p/w500/${jsonDataForMovie.poster_path}">
       </div>`
       changePage.innerHTML = ``;
       window.scrollTo(0,260);
     }}}
 });
+
+const movieTrailer = document.querySelector(`#watch-trailer`);
 
 /*****  listens to the movie link to display the full list of movies and reloads page *****/
 movies.addEventListener(`click`, event => {
@@ -88,12 +89,12 @@ movies.addEventListener(`click`, event => {
 
 /*****  listener to request API videos request *****/
 displayGalleryAsHTML.addEventListener(`click`, event => {
-  if(event.target.matches(`img`)) {
 
-    let getTrailer = event.target.closest(`.movie`);
+    let getMovie = event.target.closest(`.movie`);
+    let getTrailerKey = event.target.closest(`#watch-trailer`);
     const xhrForTrailer = new XMLHttpRequest();
 
-    const trailerEndPoint = `https://api.themoviedb.org/3/movie/${getTrailer.dataset.id}/videos?api_key=${apiKey}&language=en-US`;
+    const trailerEndPoint = `https://api.themoviedb.org/3/movie/${getMovie.dataset.id}/videos?api_key=${apiKey}&language=en-US`;
     console.log(trailerEndPoint);
     displayGalleryAsHTML.innerHTML = ``;
 
@@ -103,5 +104,8 @@ displayGalleryAsHTML.addEventListener(`click`, event => {
       if (this.readyState == 4) {
         const jsonDataTrailer = JSON.parse(this.responseText);
 
-      }}}
+        movieTrailer.addEventListener(`click`, event => {
+          
+        })
+      }}
 }); 
